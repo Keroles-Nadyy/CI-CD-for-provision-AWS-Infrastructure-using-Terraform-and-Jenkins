@@ -12,8 +12,20 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Keroles-Nadyy/CI-CD-for-provision-AWS-Infrastructure-using-Terraform-and-Jenkins'
             }
         }
-        
-        stage('Navigate to Terraform Code Directory') {
+
+        stage('Setup AWS Credentials') {
+            steps {
+                withCredentials([string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                                string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    script {
+                        env.AWS_ACCESS_KEY_ID = "${AWS_ACCESS_KEY_ID}"
+                        env.AWS_SECRET_ACCESS_KEY = "${AWS_SECRET_ACCESS_KEY}"
+                    }
+                }
+            }
+        }
+
+        stage('Navigate to Terraform Code Directory and initialize a working directory') {
             steps {
                 script {
                     dir('Infrastructure-terraform-code') {
