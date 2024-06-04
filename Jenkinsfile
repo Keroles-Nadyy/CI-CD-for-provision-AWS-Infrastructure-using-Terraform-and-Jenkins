@@ -2,16 +2,8 @@ pipeline {
     agent { label 'aws-node-slave' }
     
     parameters {
-        choice(
-            name: 'ENVIRONMENT',
-            choices: ['dev', 'prod'],
-            description: 'Select the environment (dev or prod)'
-        )
-        choice(
-            name: 'ACTION',
-            choices: ['plan', 'apply', 'destroy'],
-            description: 'Select the action (plan', 'apply', 'destroy)'
-        )
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'prod'], description: 'Select the environment (dev or prod)')
+        choice(name: 'ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Select the action (plan, apply, destroy)')
     }
     
     stages {
