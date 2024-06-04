@@ -1,9 +1,10 @@
 pipeline {
-    agent { label 'aws-ec2-slave' }
+    agent { label 'aws-node-slave' }
     
     parameters {
         choice(
             name: 'ENVIRONMENT',
+            choices: ['dev', 'prod'],
             description: 'Select the environment (dev or prod)'
         )
         choice(
@@ -87,7 +88,7 @@ pipeline {
         }
     }
     post{
-        successful {
+        success {
             slackSend color: "#439FE0", message: "Build success!: ${env.JOB_NAME}"
         }
         failure {
