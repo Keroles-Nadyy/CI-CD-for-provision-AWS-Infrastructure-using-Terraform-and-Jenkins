@@ -94,10 +94,10 @@ pipeline {
     }
     post{
         success {
-            slackSend color: "#439FE0", message: "Build success!: ${env.JOB_NAME}"
+            slackSend color: "#90ee90", message: "Build success!: ${env.JOB_NAME}"
         }
         failure {
-            slackSend color: "#439FE0", message: "Build Failed!: ${env.JOB_NAME}"
+            slackSend color: "#ff0000", message: "Build Failed!: ${env.JOB_NAME}"
         }
     }
 }
