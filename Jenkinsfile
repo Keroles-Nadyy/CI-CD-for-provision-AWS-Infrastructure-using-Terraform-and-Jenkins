@@ -19,6 +19,7 @@ pipeline {
                     dir('Infrastructure-terraform-code') {
                         sh 'pwd'
                         sh 'ls -la'
+                        sh 'terraform init'
                     }
                 }
             }
