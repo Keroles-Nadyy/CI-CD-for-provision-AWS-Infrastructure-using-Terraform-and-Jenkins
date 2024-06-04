@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     dir('Infrastructure-terraform-code') {
-                        def workspaceExistance = sh(script: "terraform workspace list | grep ${params.ENVIRONMENT}", returnExistance: true)
+                        def workspaceExistance = sh(script: "terraform workspace list | grep ${params.ENVIRONMENT}", returnStatus: true)
 
                         if (workspaceExistance != 0) {
                             echo "Workspace '${params.ENVIRONMENT}' does not exist."
