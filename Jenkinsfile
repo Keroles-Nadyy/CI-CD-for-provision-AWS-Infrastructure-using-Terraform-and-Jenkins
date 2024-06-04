@@ -82,7 +82,7 @@ pipeline {
                                 sh "terraform apply -auto-approve -var-file=${selectedTFvarsFile}"
                                 break
                             case 'destroy':
-                                sh "terraform destroy -var-file=${selectedTFvarsFile}"
+                                sh "terraform destroy -auto-approve -var-file=${selectedTFvarsFile}"
                                 break
                             default:
                                 error "Invalid action selected"
